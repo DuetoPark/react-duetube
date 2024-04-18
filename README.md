@@ -1,12 +1,10 @@
 ```
-✅ API 관련된 코드 관리
+✅ qa/실서버 코드 관리
+✅ 클린코드
 
 - 제작기간: 2023.12.26 ~ 2024.01.08
 - 구현환경: React, TailwindCSS, Youtube Data API
 - 배포방법: Netlify
-- 특징
-  - qa/실서버 코드 관리
-  - 검색 api 호출 방지
 ```
 
 [💜 Duetube 💜](https://duetube.netlify.app/)
@@ -62,42 +60,27 @@ https://github.com/DuetoPark/react-duetube/assets/69448900/d8aaeda8-866c-4a73-83
 
 ## 🚀 특징
 
-### qa/실서버 코드 관리
-
-- client 파일
-  - 데이터 fetching하는 코드만 담아냄
+- qa/실서버 코드 관리
+  - client 파일에 **데이터 fetching하는 코드**만 담아냄
   - qa 버전과 실서비스 버전으로 파일 분리
-- api 파일
-  - response 데이터 후처리 + 에러처리하는 코드만 담아냄
-  - client 인스턴스를 인자로 받아, qa/실서버 구분없이 동일하게 동작
-- context 파일
-  - `boolean` 값을 가지는 isTest 변수 생성하여, 값에 따라 qa/실서버 client 전환
-  - api 인스턴스 제공
-
-### 검색 API 호출 방지
-
-- `useRef`에 이전 검색어를 저장해 input의 state와 비교하여 검색 API 호출
+- 클린코드
+  - ealry return
+  - 임시변수 제거
+  - 형변환 명시적으로 표현
 
 <br/>
 
 ## 🍀 기능
 
-```
-✅ 다크모드
-✅ 검색 리스트
-✅ 비디오 상세 정보
-```
-
 - 다크모드
-  - `DarkModeProvider` 생성해 다크모드 상태와 toggle하는 메소드 구현
-  - `localStorage` 사용해 다크모드 상태 저장
-  - `prefers-color-scheme` 사용해 유저 운영체제 세팅이 다크모드인지 확인하고 자동으로 toggle 구현
-- 검색 리스트
-  - `<Link> 컴포넌트` 이용해 상세페이지 url로 변경하고 outlet 부분만 re-render
+  - **DarkModeProvider** 생성해 다크모드 상태와 toggle하는 메소드 구현
+  - **localStorage** 사용해 다크모드 상태 저장
+- 검색
+  - **useRef에 이전 검색어를 저장해 input의 state와 비교**하여 검색 API 호출
 - 비디오 상세 정보
-  - 비디오 상세 데이터와 채널 데이터가 필요한 페이지
-  - `useQuery`에 `async/await` 사용하여 2개의 데이터를 순서대로 호출
-  - 2개의 데이터를 하나의 객체로 병합하여 return해, `useQuery`에 의한 re-render 횟수를 2회에서 1회로 감소
+  - 필요한 데이터 : 비디오 상세 + 채널
+  - useQuery에 async/await 사용하여 2개의 데이터를 순서대로 호출
+  - 2개의 데이터를 하나의 객체로 병합하여 return해, useQuery에 의한 re-render 횟수를 2회에서 1회로 감소
 
 <br/>
 
